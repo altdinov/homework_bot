@@ -132,7 +132,6 @@ def parse_status(homework):
 
 def main():
     """Основная логика работы бота."""
-    previous_status_text = None
     previous_error_text = None
     bot = telegram.Bot(token=TELEGRAM_TOKEN)
     timestamp = int(time.time())
@@ -146,10 +145,8 @@ def main():
                 logger.debug('Статус домашней работы не изменился')
             else:
                 status_text = parse_status(homeworks[0])
-                if status_text != previous_status_text:
-                    previous_status_text = status_text
-                    logger.debug(status_text)
-                    send_message(bot, status_text)
+                logger.debug(status_text)
+                send_message(bot, status_text)
         except Exception as error:
             message = f'Сбой в работе программы: {error}'
             logger.error(message)
