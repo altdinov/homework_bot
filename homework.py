@@ -161,7 +161,7 @@ def main():
                 status_text = parse_status(homeworks[0])
                 logger.debug(status_text)
                 send_message(bot, status_text)
-        except telegram.error.TelegramError as error:
+        except UserExcTeleramError as error:
             message = f'Сбой в работе программы: {error}'
             logger.error(message)
         except Exception as error:
